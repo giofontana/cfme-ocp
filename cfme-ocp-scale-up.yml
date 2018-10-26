@@ -11,7 +11,7 @@
     new_node_fqdn: "{{ new_node_host }}.{{ domain_name }}"
   tasks: 
   - debug:
-    msg: "new_node_host = {{ new_node_host }} / new_node_fqdn = {{ new_node_fqdn }} / new_node_ip = {{ new_node_ip }}"
+      msg: "new_node_host = {{ new_node_host }} / new_node_fqdn = {{ new_node_fqdn }} / new_node_ip = {{ new_node_ip }}"
 
   - name: add nodes to inventory
     add_host:
