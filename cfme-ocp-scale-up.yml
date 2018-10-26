@@ -12,7 +12,7 @@
   tasks: 
     - name: add nodes to inventory
       add_host:
-        hostname: "{{ bastion_host }}"
+        hostname: "{{ new_node_fqdn }}"
         ansible_ssh_user: "{{ bastion_ssh_user }}"
         ansible_ssh_pass: "{{ bastion_ssh_pass }}"
         groupname: bastion
