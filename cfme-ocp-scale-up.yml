@@ -8,6 +8,7 @@
     master: false
     node: true
     ip_addr: "{{ new_node_host }}"
+    new_node_fqdn: "{{ new_node_host }}.{{ domain_name }}"
   tasks: 
     - name: add nodes to inventory
       add_host:
@@ -17,7 +18,7 @@
         groupname: bastion
     - name: add nodes to inventory
       add_host:
-        hostname: "{{ new_node_host }}"
+        hostname: "{{ new_node_fqdn }}"
         ansible_ssh_user: "{{ new_node_ssh_user }}"
         ansible_ssh_pass: "{{ new_node_ssh_pass }}"
         groupname: new_node
@@ -36,8 +37,8 @@
         insertafter: EOF
         path: /etc/ansible/hosts
         content: |
-          [new_nodes]
-          {{ new_node_host }} 
+          "[new_nodes]"
+          "{{ new_node_fqdn }} openshift_node_labels="{'type': 'app'}" openshift_hostname={{ new_node_fqdn }} openshift_ip={{ new_node_ip }} openshift_public_ip={{ new_node_ip }}"
 - hosts: all
   remote_user: "{{ bastion_ssh_user }}"
   roles:
