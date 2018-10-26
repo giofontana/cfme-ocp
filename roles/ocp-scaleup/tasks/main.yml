@@ -7,6 +7,7 @@
 
   - name: Copying ssh key from bastion to new-node
     command: sshpass -p {{ new_node_ssh_pass }} ssh-copy-id -i /root/.ssh/id_rsa.pub -o StrictHostKeyChecking=no root@{{ groups['new_node'][0] }}
+    when: "'bastion' in group_names"
 
   - name: Restarting NetworkManager
     service:
