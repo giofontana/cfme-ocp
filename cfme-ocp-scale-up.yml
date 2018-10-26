@@ -1,0 +1,44 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  remote_user: root
+  vars:
+    type: node
+    master: false
+    node: true
+    ip_addr: "{{ new_node_host }}"
+  tasks: 
+    - name: add nodes to inventory
+      add_host:
+        hostname: "{{ bastion_host }}"
+        ansible_ssh_user: "{{ bastion_ssh_user }}"
+        ansible_ssh_pass: "{{ bastion_ssh_pass }}"
+        groupname: bastion
+    - name: add nodes to inventory
+      add_host:
+        hostname: "{{ new_node_host }}"
+        ansible_ssh_user: "{{ new_node_ssh_user }}"
+        ansible_ssh_pass: "{{ new_node_ssh_pass }}"
+        groupname: new_node
+- hosts: bastion
+  remote_user: "{{ bastion_ssh_user }}"
+  tasks:
+    - name: add newnodes line
+      lineinfile:
+        dest: /etc/ansible/hosts
+        state: present
+        insertafter: '^nodes'
+        line: 'new_nodes'
+
+    - name: add newnodes block
+      blockinfile:
+        insertafter: EOF
+        path: /etc/ansible/hosts
+        content: |
+          [new_nodes]
+          {{ new_node_host }} 
+- hosts: all
+  remote_user: "{{ bastion_ssh_user }}"
+  roles:
+    - {role: 'ocp-scaleup'}
