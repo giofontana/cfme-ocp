@@ -13,6 +13,12 @@
   - debug:
       msg: "new_node_host = {{ new_node_host }} / new_node_fqdn = {{ new_node_fqdn }} / new_node_ip = {{ new_node_ip }}"
 
+  - debug:
+      msg: "bastion_host = {{ bastion_host }} / bastion_ssh_user = {{ bastion_ssh_user }} / bastion_ssh_pass = {{ bastion_ssh_pass }}"
+
+  - debug:
+      msg: "new_node_fqdn = {{ new_node_fqdn }} / new_node_ssh_user = {{ new_node_ssh_user }} / new_node_ssh_pass = {{ new_node_ssh_pass }}"
+
   - name: add nodes to inventory
     add_host:
       hostname: "{{ bastion_host }}"
