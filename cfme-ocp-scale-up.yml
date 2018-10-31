@@ -19,13 +19,13 @@
   - debug:
       msg: "new_node_fqdn = {{ new_node_fqdn }} / new_node_ssh_user = {{ new_node_ssh_user }} / new_node_ssh_pass = {{ new_node_ssh_pass }}"
 
-  - name: add nodes to inventory
+  - name: add bastion to inventory
     add_host:
       hostname: "{{ bastion_host }}"
       ansible_ssh_user: "{{ bastion_ssh_user }}"
       ansible_ssh_pass: "{{ bastion_ssh_pass }}"
       groupname: bastion
-  - name: add nodes to inventory
+  - name: add new node to inventory
     add_host:
       hostname: "{{ new_node_fqdn }}"
       ansible_ssh_user: "{{ new_node_ssh_user }}"
