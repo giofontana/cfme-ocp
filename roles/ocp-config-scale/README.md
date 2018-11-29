@@ -1,12 +1,7 @@
-Role Name
+Role OCP-CONFIG-SCALE
 =========
 
-A brief description of the role goes here.
-
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role adds required new_node instructions in ansible inventory file in a bastion server, to prepare to scaling up the cluster.
 
 Role Variables
 --------------
