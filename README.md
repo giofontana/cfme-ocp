@@ -1,3 +1,3 @@
 # CFME-OCP
 
-This playbook scales up an OpenShift cluster using a new server.
+This playbook scales up an OpenShift cluster with a new server.

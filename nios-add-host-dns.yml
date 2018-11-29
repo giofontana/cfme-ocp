@@ -3,13 +3,6 @@
   connection: local
   gather_facts: no
   remote_user: root
-#  vars:
-#    ipv4_range: "192.168.0.0/16"
-#    new_server_hostname: "teste123.example.com"
-#    new_server_ip: "192.168.0.155"
-#    nios_host: "129.146.209.37"
-#    nios_user: "admin"
-#    nios_passwd: "r3dh4t1!"
   tasks:      
 
   - name: return next available IP address for network {{ ipv4_range }}
